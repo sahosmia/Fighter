@@ -1,0 +1,74 @@
+-------------sesstion pert-------------
+
+1. registation 
+
+//veriable
+*$_SESSION['reg_name']
+*$_SESSION['reg_email']
+*$_SESSION['reg_password']
+*$_SESSION['reg_confirm_password']
+
+//error
+*$_SESSION['reg_name_requried']
+*$_SESSION['reg_email_requried']
+*$_SESSION['reg_email_invalid']
+*$_SESSION['reg_email_exist']
+*$_SESSION['reg_password_requried']
+*$_SESSION['reg_confirm_password_requried']
+*$_SESSION['confirm_password_match']
+
+// success
+*$_SESSION['reg_success']
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2. login
+
+//veriable
+*$_SESSION['log_email']
+*$_SESSION['log_password']
+
+//error
+*$_SESSION['log_email_requried']
+*$_SESSION['log_valid_email']
+*$_SESSION['log_password_requried']
+*$_SESSION['log_password_wrong']
+
+// success
+*$_SESSION['auth']
+
+// warning
+*$_SESSION['log_chack']
+*$_SESSION['deny_error']
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+3. update profile 
+
+// variable
+*$_SESSION['update_name']
+*$_SESSION['update_email']
+
+*$_SESSION['update_old_password']
+*$_SESSION['update_new_password']
+*$_SESSION['update_confirm_password']
+
+// error
+*$_SESSION['update_name_requried']
+*$_SESSION['update_name_short']
+*$_SESSION['update_email_requried']
+*$_SESSION['update_email_invalid']
+*$_SESSION['update_email_exist']
+
+*$_SESSION['update_old_password_requried']
+*$_SESSION['update_old_password_invalid']
+*$_SESSION['update_new_password_requried']
+*$_SESSION['update_confirm_password_requried']
+*$_SESSION['update_confirm_password_match']
+
+
+
+// success
+*$_SESSION['name_update_success']
+*$_SESSION['email_update_success']
+*$_SESSION['password_update_success']
