@@ -11,8 +11,20 @@
       </a><!-- br-menu-link -->
       <a href="../profile/edit.php" class="br-menu-link">
          <div class="br-menu-item">
-            <i class="menu-item-icon icon ion-ios-person-outline tx-24"></i>
+            <i class="menu-item-icon icon ion-ios-compose-outline tx-24"></i>
             <span class="menu-item-label">Edit Profile</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../skill/skill.php" class="br-menu-link">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-settings tx-24"></i>
+            <span class="menu-item-label">Skill</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../service/service.php" class="br-menu-link">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">Service</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
       <a href="mailbox.html" class="br-menu-link">

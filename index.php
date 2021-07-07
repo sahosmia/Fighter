@@ -1,3 +1,23 @@
+<?php
+include 'include/db.php';
+
+// skill query
+function data_read($table_name)
+{
+    global $db_connect;       // golobal scope
+    $select_query = "SELECT * FROM $table_name WHERE status = 2";
+    $mysqli_query = mysqli_query($GLOBALS['db_connect'], $select_query);
+    return $mysqli_query;
+}
+
+$skills = data_read("skills");
+
+// print_r($skill_query_mysqli);
+// foreach ($skill_query_mysqli as $skill) {
+//     print_r($skill);
+// }
+// die();
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -190,33 +210,15 @@
                     </div>
                     <div class="skill-wrapper">
                         <!-- single progress bar -->
-                        <h5>Web Design</h5>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: 75%;">
-                                <span class="ttop">75%</span>
+                        <?php foreach ($skills as $skill) : ?>
+                            <h5><?= $skill['skill_title'] ?></h5>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: <?= $skill['skill_value'] ?>%;">
+                                    <span class="ttop"><?= $skill['skill_value'] ?>%</span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- single progress bar -->
-                        <h5>Web Development</h5>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: 85%;">
-                                <span class="ttop">85%</span>
-                            </div>
-                        </div>
-                        <!-- single progress bar -->
-                        <h5>Web Design</h5>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: 80%;">
-                                <span class="ttop">80%</span>
-                            </div>
-                        </div>
-                        <!-- single progress bar -->
-                        <h5>Photography</h5>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: 90%;">
-                                <span class="ttop">90%</span>
-                            </div>
-                        </div>
+
+                        <?php endforeach; ?>
 
                     </div>
                 </div>
@@ -423,7 +425,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

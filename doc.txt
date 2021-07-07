@@ -48,7 +48,6 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // variable
 *$_SESSION['update_name']
 *$_SESSION['update_email']
-
 *$_SESSION['update_old_password']
 *$_SESSION['update_new_password']
 *$_SESSION['update_confirm_password']
@@ -59,7 +58,6 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 *$_SESSION['update_email_requried']
 *$_SESSION['update_email_invalid']
 *$_SESSION['update_email_exist']
-
 *$_SESSION['update_old_password_requried']
 *$_SESSION['update_old_password_invalid']
 *$_SESSION['update_new_password_requried']
@@ -72,3 +70,23 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 *$_SESSION['name_update_success']
 *$_SESSION['email_update_success']
 *$_SESSION['password_update_success']
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+4. Skill 
+
+// variable
+*$_SESSION['skill_title']
+*$_SESSION['skill_value']
+
+// error
+*$_SESSION['skill_title_requried']
+*$_SESSION['skill_value_requried']
+*$_SESSION['skill_value_invalid']
+
+
+
+*$_SESSION['skill_title_exist']
+
+// success
+*$_SESSION['skill_success']
+
