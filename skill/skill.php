@@ -1,13 +1,16 @@
 <?php
-include '../include/db.php';
-$select_query =  "SELECT id, skill_title, skill_value, skill_status FROM skills";
-$db_mysqli_query = mysqli_query($db_connect, $select_query);
+require_once '../include/function.php';
+$skills = data_read("skills", 0);
+
 $count = 1;
 
 // include item 
-include '../include/header.php';
-include '../include/login_check.php';
-include '../include/nav.php';
+require_once '../include/header.php';
+require_once '../include/login_check.php';
+require_once '../include/nav.php';
+
+
+
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
@@ -39,7 +42,9 @@ include '../include/nav.php';
                         </thead>
                         <tbody>
                            <?php
-                           foreach ($db_mysqli_query as $data) :
+                           foreach ($skills as $data) :
+                              echo $_SERVER['REQUEST_URI'];
+
                            ?>
                               <tr>
                                  <td><?= $count++ ?></td>
@@ -48,8 +53,8 @@ include '../include/nav.php';
                                  <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                        <a href="" class="btn btn-teal  pd-x-15"><i class="fa fa-edit"></i></a>
-                                       <a href="skill_action.php?skill_id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['skill_status'] == 1) ?>" class="btn btn-<?= ($data['skill_status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['skill_status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
-                                       <a href="skill_action.php?skill_id=<?= $data['id'] ?>&action=single_delete" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
+                                       <a href="../include/action.php?table_name=skills&id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['status'] == 1) ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
+                                       <a href="../include/action.php?table_name=skills&id=<?= $data['id'] ?>&action=single_delete" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
                                     </div>
 
                                  </td>
@@ -70,7 +75,7 @@ include '../include/nav.php';
                      </table>
                   </div>
                   <div class="card-footer bg-teal text-light text-uppercase">
-                     total : <?= $db_mysqli_query->num_rows ?>
+                     total : <?= $skills->num_rows ?>
                   </div>
                </div>
             </div>

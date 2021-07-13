@@ -1,5 +1,5 @@
 <?php
-include '../include/db.php';
+require_once '../include/function.php';
 
 // veriable
 $skill_title = $_POST['skill_title'];
@@ -30,20 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    // // error == false 
    if ($error == false) {
-      echo "hobe";
       $skill_title_query = "SELECT COUNT(*) AS count FROM skills WHERE skill_title = '$skill_title'";   //chack skill_title is resgisted or not query
-      $skill_title_form_db = mysqli_query($db_connect, $skill_title_query);
+      $skill_title_form_db = mysqli_query(db(), $skill_title_query);
       $skill_title_assoc = mysqli_fetch_assoc($skill_title_form_db);
       if ($skill_title_assoc['count'] == 0) {                       // skill_title not exist
          $insert_query =  "INSERT INTO skills (skill_title, skill_value) VALUES ('$skill_title', '$skill_value')";
-         mysqli_query($db_connect, $insert_query);
+         mysqli_query(db(), $insert_query);
          $_SESSION['skill_success'] = "Skill Add successfull.";
          header("location: skill.php");
       } else {             // skill title exist
          $_SESSION['skill_title_exist'] = "*This skill title is alrady exist";
          header("location: skill.php");
       }
-   } else {            // error == true
-      header("location: skill.php");
-   }
+   }      // error == true
+   header('location:' . $_SERVER['HTTP_REFERER']);
 }
+header("location: skill.php");

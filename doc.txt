@@ -64,8 +64,6 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 *$_SESSION['update_confirm_password_requried']
 *$_SESSION['update_confirm_password_match']
 
-
-
 // success
 *$_SESSION['name_update_success']
 *$_SESSION['email_update_success']
@@ -82,11 +80,39 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 *$_SESSION['skill_title_requried']
 *$_SESSION['skill_value_requried']
 *$_SESSION['skill_value_invalid']
-
-
-
 *$_SESSION['skill_title_exist']
 
 // success
 *$_SESSION['skill_success']
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+5. service 
+
+// variable
+*$_SESSION['service_title']
+*$_SESSION['service_description']
+*$_SESSION['service_icon']
+
+// error
+*$_SESSION['service_title_requried']
+*$_SESSION['service_description_requried']
+*$_SESSION['service_icon_requried']
+*$_SESSION['service_title_exist']
+
+// success
+*$_SESSION['service_success']
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+5. Auto Write Code 
+
+// variable
+*$_SESSION['auto_write_title']
+
+// error
+*$_SESSION['auto_write_title_requried']
+*$_SESSION['auto_write_title_exist']
+
+// success
+*$_SESSION['auto_write_success']
 

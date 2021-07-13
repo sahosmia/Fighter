@@ -1,22 +1,24 @@
 <?php
-include 'include/db.php';
+include 'include/function.php';
 
-// skill query
-function data_read($table_name)
-{
-    global $db_connect;       // golobal scope
-    $select_query = "SELECT * FROM $table_name WHERE status = 2";
-    $mysqli_query = mysqli_query($GLOBALS['db_connect'], $select_query);
-    return $mysqli_query;
-}
 
-$skills = data_read("skills");
 
-// print_r($skill_query_mysqli);
-// foreach ($skill_query_mysqli as $skill) {
-//     print_r($skill);
+$skills = data_read("skills", 2);
+$services = data_read("services", 2);
+$auto_writes = data_read("auto_writes", 2);
+echo $_SERVER['REQUEST_URI'];
+$count = 1;
+
+// test($col, $val);
+// print_r($auto_write['field_count']);
+// foreach ($auto_write as $data) {
+//     echo $count;
+//     echo $data['auto_write_title'];
+//     echo "<br>";
+//     $count++;
 // }
 // die();
+
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -164,10 +166,14 @@ $skills = data_read("skills");
                                 <h2>Welcome To Fighter</h2>
                                 <h1 class="cd-headline clip is-full-width">
                                     <span class="cd-words-wrapper">
-                                        <b class="is-visible">Professional Web Developer</b>
-                                        <b>I'm Web Developer</b>
-                                        <b>I'm Web Designer</b>
-                                        <b>Lives in US</b>
+                                        <?php
+                                        foreach ($auto_writes as $data) :
+                                        ?>
+                                            <b class="<?= ($count == 1) ? "is-visible" : "" ?>"><?= $data['auto_write_title'] ?></b>
+                                        <?php
+                                            $count++;
+                                        endforeach;
+                                        ?>
                                     </span>
                                 </h1>
                                 <div class="slider_readmore">
@@ -239,54 +245,25 @@ $skills = data_read("skills");
                 </div>
             </div>
             <div class="row">
+
                 <!-- single service item -->
-                <div class="col-md-3 col-sm-6 col-xs-12 ">
-                    <div class="single_service">
-                        <div class="service_icon">
-                            <span class="ti-desktop"></span>
-                        </div>
-                        <div class="sercive_content">
-                            <h2>WEB DESIGN</h2>
-                            <p>Lorem ipsum dolor sit amet, conse adipisicing elit, sed do eiusmod te incididunt ut labore et</p>
+                <?php
+                foreach ($services as $service) :
+                ?>
+                    <div class="col-md-3 col-sm-6 col-xs-12 ">
+                        <div class="single_service">
+                            <div class="service_icon">
+                                <span class="<?= $service['service_icon'] ?>"></span>
+                            </div>
+                            <div class="sercive_content">
+                                <h2><?= $service['service_title'] ?></h2>
+                                <p><?= $service['service_description'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- single service item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single_service">
-                        <div class="service_icon">
-                            <span class="ti-package"></span>
-                        </div>
-                        <div class="sercive_content">
-                            <h2>GRAPHICS DESIGN</h2>
-                            <p>Lorem ipsum dolor sit amet, conse adipisicing elit, sed do eiusmod te incididunt ut labore et</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- single service item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single_service">
-                        <div class="service_icon">
-                            <span class="ti-camera"></span>
-                        </div>
-                        <div class="sercive_content">
-                            <h2>PHOTOGRAPHY</h2>
-                            <p>Lorem ipsum dolor sit amet, conse adipisicing elit, sed do eiusmod te incididunt ut labore et</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- single service item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single_service">
-                        <div class="service_icon">
-                            <span class="ti-settings"></span>
-                        </div>
-                        <div class="sercive_content">
-                            <h2>SUPPORT</h2>
-                            <p>Lorem ipsum dolor sit amet, conse adipisicing elit, sed do eiusmod te incididunt ut labore et</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                endforeach;
+                ?>
 
             </div>
 

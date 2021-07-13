@@ -1,5 +1,5 @@
 <?php
-include '../include/db.php';
+require_once '../include/function.php';
 
 // veriable
 $email = $_POST['email'];
@@ -28,16 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    if ($error == false) {                  // error not show
       $email_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email'";
-      $email_form_db = mysqli_query($db_connect, $email_query);
+      $email_form_db = mysqli_query(db(), $email_query);
       $email_assoc = mysqli_fetch_assoc($email_form_db);
       if ($email_assoc['count'] == 1) {                    // check registered email
          $after_encript_password = md5($password);
          $password_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email' AND password = '$after_encript_password'";
-         $password_form_db = mysqli_query($db_connect, $password_query);
+         $password_form_db = mysqli_query(db(), $password_query);
          $password_assoc = mysqli_fetch_assoc($password_form_db);
          if ($password_assoc['count'] == 1) {
             $select_query =  "SELECT * FROM users WHERE email = '$email'";
-            $db_mysqli_query = mysqli_query($db_connect, $select_query);
+            $db_mysqli_query = mysqli_query(db(), $select_query);
             $select_assoc = mysqli_fetch_assoc($db_mysqli_query);
             $_SESSION['auth'] = array('id' => $select_assoc['id'], 'name' => $select_assoc['name'], 'email' => $email, 'password' => $select_assoc['password']);
             $_SESSION['log_chack'] = true;
@@ -51,6 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          header("location: login.php");
       }
    } else {
-      header("location: login.php");
+      header('location:' . $_SERVER['HTTP_REFERER']);
    }
 }

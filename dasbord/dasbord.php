@@ -1,7 +1,7 @@
 <?php
-include '../include/db.php';
-$select_query =  "SELECT id, name, email FROM users";
-$db_mysqli_query = mysqli_query($db_connect, $select_query);
+require_once '../include/function.php';
+$users = data_read("users", 0);  // 0 == all, 1 == hide_status, 2 == show_status
+
 
 
 // include item 
@@ -38,7 +38,7 @@ include '../include/nav.php';
                         </thead>
                         <tbody>
                            <?php
-                           foreach ($db_mysqli_query as $user_data) :
+                           foreach ($users as $user_data) :
                            ?>
                               <tr>
                                  <td>ami</td>
@@ -52,7 +52,7 @@ include '../include/nav.php';
                      </table>
                   </div>
                   <div class="card-footer bg-teal text-light text-uppercase">
-                     total : <?= $db_mysqli_query->num_rows ?>
+                     total : <?= $users->num_rows ?>
                   </div>
                </div>
             </div>

@@ -1,11 +1,11 @@
 <?php
 
-include '../include/db.php';
+include '../include/function.php';
 include '../include/login_check.php';
 include '../include/header.php';
 include '../include/nav.php';
 $select_query =  "SELECT id, name, email FROM users";
-$db_mysqli_query = mysqli_query($db_connect, $select_query);
+$db_mysqli_query = mysqli_query(db(), $select_query);
 ?>
 
 
@@ -20,6 +20,7 @@ $db_mysqli_query = mysqli_query($db_connect, $select_query);
       </nav>
    </div>
    <!-- br-pageheader -->
+   
 
    <div class="br-pagebody mg-t-5 pd-x-30">
       <div class="container-fliud mt-5">

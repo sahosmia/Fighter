@@ -1,6 +1,6 @@
 <?php
 
-include '../include/db.php';
+require_once '../include/function.php';
 
 // veriable
 $name = $_POST['name'];
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($email_assoc['count'] == 0) {                       // email not exist
          $after_encript_password = md5($password);
          $insert_query =  "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$after_encript_password')";
-         mysqli_query($db_connect, $insert_query);
+         mysqli_query(db(), $insert_query);
          $_SESSION['reg_success'] = "Register successfull. You can log in now";
          header("location: login.php");
       } else {             // email exist
@@ -64,4 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    } else {            // error == true
       header("location: register.php");
    }
+} else {
+   header("location: register.php");
 }

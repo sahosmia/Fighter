@@ -1,27 +1,34 @@
 <!-- ########## START: LEFT PANEL ########## -->
+
 <div class="br-logo"><a href=""><span>[</span>bracket<span>]</span></a></div>
 <div class="br-sideleft overflow-y-auto">
    <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
    <div class="br-sideleft-menu">
-      <a href="../dasbord/dasbord.php" class="br-menu-link active">
+      <a href="../dasbord/dasbord.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/dasbord/dasbord.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../profile/edit.php" class="br-menu-link">
+      <a href="../profile/edit.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/profile/edit.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-compose-outline tx-24"></i>
             <span class="menu-item-label">Edit Profile</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../skill/skill.php" class="br-menu-link">
+      <a href="../auto_write/auto_write.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/auto_write/auto_write.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-settings tx-24"></i>
+            <span class="menu-item-label">Auto Write</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../skill/skill.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/skill/skill.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-settings tx-24"></i>
             <span class="menu-item-label">Skill</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../service/service.php" class="br-menu-link">
+      <a href="../service/service.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/service/service.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
             <span class="menu-item-label">Service</span>
@@ -33,6 +40,7 @@
             <span class="menu-item-label">Mailbox</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
+
 
 
       <a href="#" class="br-menu-link">

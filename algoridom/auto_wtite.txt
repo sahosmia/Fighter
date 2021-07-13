@@ -1,0 +1,19 @@
+Auto Write Algoridom
+
+setp-1: start
+setp-2: new folder & new file auto_write and take auto write code file
+setp-3: create new tabel, name auto_writes, col [id,title,added_by, Created_at, status]
+setp-4: take input title name and need veriable
+setp-5: input title name validation 
+setp-6: input title name error and success massage show
+setp-7: auto write page and index.php item show and testing
+setp-8: action setting
+setp-9: end
+
+
+
+
+
+
+
+
