@@ -1,6 +1,10 @@
 <?php
 session_start();
 date_default_timezone_set('Asia/Dhaka');
+$date = date('Y-m-d H:i:s');
+$auth = isset($_SESSION['auth']['id']);
+
+$error = false;
 
 
 define("server", "localhost");
@@ -33,9 +37,6 @@ function data_read($table_name, $status)
 function data_delete($table_name, $select)
 {
    //$select 0 == all, 1 == single,
-
-   // global $db_connect;       // golobal scope
-
    if ($select == 0) {
       $delete_query = "DELETE FROM $table_name";
    } else {
@@ -44,14 +45,11 @@ function data_delete($table_name, $select)
    $mysqli_query = mysqli_query(db(), $delete_query);
    return $mysqli_query;
 }
-
 // data read 
 function data_show_hide($table_name, $select, $status)
 {
    //$status 1 = hide_curent_status,.... 2 = show_curent_status
    //select => id select
-
-   global $db_connect;       // golobal scope
 
    if ($status == 1) {
       $update_query = "UPDATE $table_name SET status=2 WHERE id=$select";
@@ -72,10 +70,31 @@ function user_name_read($user_id)
    $user_assoc = mysqli_fetch_assoc($user_form_db);
    return $user_assoc['name'];
 }
-
-function demo()
+function where_data_read($table_name, $user_id)
 {
-   return "sahos";
+   $user_query = "SELECT * FROM $table_name WHERE id = $user_id";
+   $user_form_db = mysqli_query(db(), $user_query);
+   $user_assoc = mysqli_fetch_assoc($user_form_db);
+   return $user_assoc;
+}
+function settings_data_read($item)
+{
+   $user_query = "SELECT * FROM settings WHERE item = '$item'";
+   $user_form_db = mysqli_query(db(), $user_query);
+   $user_assoc = mysqli_fetch_assoc($user_form_db);
+   return $user_assoc['val'];
+}
+
+function delete_all($table_name)
+{
+
+   foreach (data_read("teams", 0) as $data) {
+      $path = '../upload/team/' . $data['img'];
+      unlink($path);
+   }
+
+   $delete_query = "TRUNCATE $table_name";
+   mysqli_query(db(), $delete_query);
 }
 
 function test()

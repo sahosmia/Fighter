@@ -104,7 +104,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-5. Auto Write Code 
+6. Auto Write Code 
 
 // variable
 *$_SESSION['auto_write_title']
@@ -115,4 +115,66 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // success
 *$_SESSION['auto_write_success']
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+7. Auto Counter Code 
+
+// variable
+*$_SESSION['auto_counter_title']
+*$_SESSION['auto_counter_value']
+*$_SESSION['auto_counter_logo']
+
+// error
+*$_SESSION['auto_counter_title_requried']
+*$_SESSION['auto_counter_title_exist']
+*$_SESSION['auto_counter_value_requried']
+*$_SESSION['auto_counter_logo_requried']
+
+// success
+*$_SESSION['auto_counter_success']
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+8. protfolio Code 
+
+// variable
+*$_SESSION['protfolio_img']
+
+
+// error
+*$_SESSION['protfolio_img_requried']
+*$_SESSION['auto_counter_title_exist']
+*$_SESSION['auto_counter_value_requried']
+*$_SESSION['auto_counter_logo_requried']
+
+// success
+*$_SESSION['auto_counter_success']
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+9. team Code 
+
+// variable
+*$_SESSION['team_img']
+
+
+
+
+
+
+
+
+
+
+// error
+*$_SESSION['team_img_requried']
+*$_SESSION['team_img_extention']
+*$_SESSION['team_name_requried']
+*$_SESSION['team_title_requried']
+*$_SESSION['team_facebook_requried']
+
+
+// success
+*$_SESSION['team_success']
 

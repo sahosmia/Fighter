@@ -6,7 +6,7 @@ include 'include/function.php';
 $skills = data_read("skills", 2);
 $services = data_read("services", 2);
 $auto_writes = data_read("auto_writes", 2);
-echo $_SERVER['REQUEST_URI'];
+$protfolios = data_read("protfolios", 1);
 $count = 1;
 
 // test($col, $val);
@@ -89,6 +89,15 @@ $count = 1;
     <!-- MORDANIZER JS
 		============================================ -->
     <script src="asset/frontend/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        .slider_area {
+            background: url(upload/banner/<?= settings_data_read('banner') ?>);
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+        }
+    </style>
 
 </head>
 
@@ -205,7 +214,7 @@ $count = 1;
                 <div class="col-md-4 col-sm-6 col-xs-12">
 
                     <div class="feature_thumb">
-                        <img src="asset/frontend/img/about/1.png" alt="" />
+                        <img src="upload/about/<?= settings_data_read('about_img') ?>" alt="" />
                     </div>
 
                 </div>
@@ -287,121 +296,46 @@ $count = 1;
                 <div class="col-md-12">
                     <div class="portfolio_nav">
                         <ul class="filter-menu">
-                            <li class="current_menu_item" data-filter="*" data-toggle="tooltip" data-placement="top" title="12">All</li>
-                            <li data-filter=".physics" data-toggle="tooltip" data-placement="top" title="05">Web Design</li>
-                            <li data-filter=".cemes" data-toggle="tooltip" data-placement="top" title="10">PHOTOGRAPHY</li>
-                            <li data-filter=".math" data-toggle="tooltip" data-placement="top" title="08">App Design</li>
-                            <li data-filter=".english" data-toggle="tooltip" data-placement="top" title="06">Creative</li>
+                            <li class="current_menu_item" data-filter="*" data-toggle="tooltip" data-placement="top" title="<?= $protfolios->num_rows ?>">All</li>
+                            <?php
+                            foreach (data_read("protfolio_catagories", 1) as $data) :
+                                // $explod_name = explode(" ", $data['name']);
+                                $id = $data['id'];
+                                $count_query = "SELECT COUNT(*) AS count FROM protfolios WHERE catagory_id = $id";
+                                $result = mysqli_query(db(), $count_query);
+                                $result_assoc = mysqli_fetch_assoc($result);
+
+
+                            ?>
+                                <!-- <li data-filter=".<?= strtolower($explod_name[0]) ?>" data-toggle="tooltip" data-placement="top" title="05"><?= $data['name'] ?></li> -->
+                                <li data-filter=".<?= $data['id'] ?>" data-toggle="tooltip" data-placement="top" title="<?= $result_assoc['count'] ?>"><?= $data['name'] ?></li>
+                            <?php
+                            endforeach; ?>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row prot_image_load">
                 <div class="gallery_items">
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 physics  col-sm-6 col-xs-12 grid-item">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/1.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/1.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
+                    <?php
+                    foreach (data_read("protfolios", 1) as $data) :
+                    ?>
+                        <!-- START SINGLE PORTFOLIO  -->
+                        <div class="col-md-3 <?= $data['catagory_id'] ?>  col-sm-6 col-xs-12 grid-item">
+                            <div class="single_portfolio">
+                                <div class="single_portfolio_thumb">
+                                    <a href="upload/protfolio/<?= $data['img'] ?>" class="venobox_custom" data-gall="myGallery">
+                                        <img src="upload/protfolio/<?= $data['img'] ?>" alt="" />
+                                        <div class="port_icon">
+                                            <span class="ti-plus"></span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 physics col-sm-6 col-xs-12 cemes grid-item math">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/2.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/2.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 web grid-item math">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/3.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/3.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 cemes grid-item math">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/4.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/4.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 cemes grid-item web">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/5.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/5.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 grid-item english web">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/6.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/6.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 grid-item english">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/7.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/7.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- START SINGLE PORTFOLIO  -->
-                    <div class="col-md-3 col-sm-6 col-xs-12 grid-item english">
-                        <div class="single_portfolio">
-                            <div class="single_portfolio_thumb">
-                                <a href="asset/frontend/img/galary/8.jpg" class="venobox_custom" data-gall="myGallery">
-                                    <img src="asset/frontend/img/galary/8.jpg" alt="" />
-                                    <div class="port_icon">
-                                        <span class="ti-plus"></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    endforeach;
+                    ?>
                 </div>
             </div>
         </div>
@@ -412,53 +346,25 @@ $count = 1;
         <div class="container">
             <div class="row">
                 <!-- Single Counter Item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-counter">
-                        <div class="counter-icon">
-                            <span class="ti-face-smile"></span>
-                        </div>
-                        <div class="counter-text">
-                            <span class="counterup">80</span>
-                            <p>Happy Client</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Counter Item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-counter">
-                        <div class="counter-icon">
-                            <span class="ti-cup"></span>
-                        </div>
-                        <div class="counter-text">
-                            <span class="counterup">70</span>
-                            <p>Cup Of Cofee</p>
+                <?php
+                foreach (data_read('auto_counters', 2) as $data) :
+                ?>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-counter">
+                            <div class="counter-icon">
+                                <span class="<?= $data['logo'] ?>"></span>
+                            </div>
+                            <div class="counter-text">
+                                <span class="counterup"><?= $data['value'] ?></span>
+                                <p><?= $data['title'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Single Counter Item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-counter">
-                        <div class="counter-icon">
-                            <span class="ti-settings"></span>
-                        </div>
-                        <div class="counter-text">
-                            <span class="counterup">100</span>
-                            <p>Project Done</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Counter Item -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-counter">
-                        <div class="counter-icon">
-                            <span class="ti-ruler-pencil"></span>
-                        </div>
-                        <div class="counter-text">
-                            <span class="counterup">60</span>
-                            <p>Running Project</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                endforeach;
+                ?>
+
+
 
             </div>
         </div>
@@ -478,6 +384,48 @@ $count = 1;
             <div class="row">
                 <div class="team_wrap">
                     <!-- single team -->
+                    <?php
+                    foreach (data_read('teams', 1) as $data) :
+                    ?>
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="single_team">
+                                <div class="team_thumb">
+                                    <img src="upload/team/<?= $data['img'] ?>" alt="" />
+                                    <div class="team_hover">
+                                        <div class="team_hover_icon">
+                                            <a href=""><span class="ti-facebook"></span></a>
+                                            <?php
+                                            if ($data['twitter'] != null) :
+                                            ?>
+                                                <a href=""><span class="ti-twitter"></span></a>
+                                            <?php
+                                            endif;
+                                            ?>
+                                            <?php
+                                            if ($data['tumblr'] != null) :
+                                            ?>
+                                                <a href=""><span class="ti-tumblr"></span></a>
+                                            <?php
+                                            endif;
+                                            ?>
+                                            <?php
+                                            if ($data['linkedin'] != null) :
+                                            ?>
+                                                <a href=""><span class="ti-linkedin"></span></a>
+                                            <?php
+                                            endif;
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team_info">
+                                    <h2>Christian Weber <span class="member-role">Manager</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                    ?>
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="single_team">
                             <div class="team_thumb">
@@ -618,155 +566,10 @@ $count = 1;
         </div>
     </div>
 
-    <!-- BLOG AREA-->
-    <div class="blog_area" id="blog">
-        <div class="container">
-            <!-- section title -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section_title">
-                        <h1><span class="title">LATEST NEWS</span></h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="blog_carousel curosel-style-blog">
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html">
-                                    <img src="asset/frontend/img/blog/1.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Contrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/2.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Dontrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/3.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Fontrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/4.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Contrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/5.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Contrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/6.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Contrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <!-- single blog -->
-                        <div class="single_blog">
-                            <div class="blog_thumb">
-                                <a href="single-blog.html"><img src="asset/frontend/img/blog/1.jpg" alt="" /></a>
-                            </div>
-                            <div class="blog_content">
-                                <h2><a href="single-blog.html">Contrary to popular belief Lore</a></h2>
-                                <div class="post_meta">
-                                    <span class="badmin">by : admin</span>
-                                    <span class="badmin">in design</span>
-                                    <span class="badmin">09 comments</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicin elit grt sed do eiusmod tempor.</p>
-                                <div class="blog_readmore"><a href="single-blog.html">READ MORE</a></div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- footer area -->
-    <div class="footer_area">
+    <div class="footer_area bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">

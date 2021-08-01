@@ -40,11 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // // error == false 
    if ($error == false) {
       $service_title_query = "SELECT COUNT(*) AS count FROM services WHERE service_title = '$service_title'";   //chack service_title is resgisted or not query
-      $service_title_form_db = mysqli_query($db_connect, $service_title_query);
+      $service_title_form_db = mysqli_query(db(), $service_title_query);
       $service_title_assoc = mysqli_fetch_assoc($service_title_form_db);
       if ($service_title_assoc['count'] == 0) {                       // service_title not exist
          $insert_query =  "INSERT INTO services (service_title, service_description, service_icon, added_by, created_at) VALUES ('$service_title', '$service_description', '$service_icon', '$auth', '$date')";
-         mysqli_query($db_connect, $insert_query);
+         mysqli_query(db(), $insert_query);
          $_SESSION['service_success'] = "service Add successfull.";
          header("location: service.php");
       } else {             // service title exist

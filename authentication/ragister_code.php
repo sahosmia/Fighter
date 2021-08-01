@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // error == false 
    if ($error == false) {
       $email_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email'";   //chack email is resgisted or not query
-      $email_form_db = mysqli_query($db_connect, $email_query);
+      $email_form_db = mysqli_query(db(), $email_query);
       $email_assoc = mysqli_fetch_assoc($email_form_db);
       if ($email_assoc['count'] == 0) {                       // email not exist
          $after_encript_password = md5($password);

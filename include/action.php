@@ -4,10 +4,10 @@ require_once '../include/function.php';
 // die();
 // print_r($_GET);
 // die();
-$id = $_GET['id'];
-$action = $_GET['action'];
-$status = $_GET['status'];
 $table = $_GET['table_name'];
+$action = $_GET['action'];
+$id = $_GET['id'];
+$status = isset($_GET['status']);
 
 
 
@@ -18,8 +18,19 @@ if ($action == 'single_delete') {
    data_delete($table, $id);
 }
 
+
+if ($action == 'img_delete') {
+   $img_path = isset($_GET['img_path']);
+
+   data_delete($table, $id);
+   unlink($img_path);
+}
+
 if ($action == 'show_hide') {
    data_show_hide($table, $id, $status);
+}
+if ($action == 'delete_all') {
+   delete_all($table);
 }
 
 

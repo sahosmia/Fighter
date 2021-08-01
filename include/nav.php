@@ -4,6 +4,7 @@
 <div class="br-sideleft overflow-y-auto">
    <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
    <div class="br-sideleft-menu">
+
       <a href="../dasbord/dasbord.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/dasbord/dasbord.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
@@ -34,6 +35,36 @@
             <span class="menu-item-label">Service</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
+      <a href="../protfolio/protfolio.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/protfolio/protfolio.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">protfolio</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../protfolio/protfolio_catagory.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/protfolio/protfolio_catagory.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">protfolio Catagory</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../auto_counter/auto_counter.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/auto_counter/auto_counter.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">Auto Counter</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../team/team.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/team/team.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">Team</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
+      <a href="../setting/setting.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/setting/setting.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
+            <span class="menu-item-label">Setting</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
       <a href="mailbox.html" class="br-menu-link">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
@@ -57,7 +88,12 @@
       </ul>
 
 
-
+      <a href="../index.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/index.php") ? "active" : "" ?> ">
+         <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Visit Site</span>
+         </div><!-- menu-item -->
+      </a><!-- br-menu-link -->
 
 
    </div><!-- info-lst -->

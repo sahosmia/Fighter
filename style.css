@@ -182,8 +182,7 @@ DEAFULT SECTION TITLE CSS
   top: 55px;
   width: 50px;
 }
-.section_title span.title {
-}
+
 /*=====================
 HEADER AREA CSS
 ======================*/
@@ -194,18 +193,14 @@ HEADER AREA CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-.logo {
-}
-.logo a {
-}
+
 .col-md-3 > img {
   margin-top: 50px;
 }
 .logo {
   padding-top: 2px;
 }
-.logo a {
-}
+
 .team_thumb img {
   width: 100%;
 }
@@ -293,8 +288,6 @@ HEADER NAV CSS
   display: block;
   padding: 4px 0;
 }
-.menu ul ul li a {
-}
 
 .menu ul li:hover ul {
   opacity: 1;
@@ -360,13 +353,7 @@ Home 3 Header CSS
 SLIDER AREA CSS
 ======================*/
 
-.slider_area {
-  background: url(asset/frontend/img/slider/s4.jpg);
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-}
-.home-2.slider_area {
+/* .home-2.slider_area {
   background: url(asset/frontend/img/slider/s4.jpg);
   background-size: cover;
   background-position: center center;
@@ -375,7 +362,7 @@ SLIDER AREA CSS
   background: url(asset/frontend/img/slider/s4.jpg);
   background-size: cover;
   background-position: center center;
-}
+} */
 
 .slider_area:before {
   content: "";
@@ -479,10 +466,6 @@ a.readmore:hover {
 }
 /* progress bar */
 
-.progress_text {
-}
-.progress_text h1 {
-}
 .skill_title > h4 {
   font-size: 18px;
   font-weight: 600;
@@ -498,8 +481,6 @@ a.readmore:hover {
   font-weight: 500;
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
-}
-.progress_text p {
 }
 
 .progress {
@@ -553,19 +534,15 @@ SERVICE AREA CSS
 .single_service:hover {
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.15);
 }
-.service_icon {
-}
+
 .service_icon span {
   font-size: 30px;
 }
-.sercive_content {
-}
+
 .sercive_content h2 {
   color: #333;
   font-weight: 600;
   padding: 11px 0;
-}
-.sercive_content p {
 }
 
 /*=====================
@@ -584,8 +561,7 @@ PORTFOLIO NAV CSS
   text-align: center;
   margin-bottom: 50px;
 }
-.portfolio_nav ul {
-}
+
 .portfolio_nav ul li {
   list-style: none;
   display: inline;
@@ -672,15 +648,13 @@ COUNTER AREA CSS
   background: #f9f9f9 none repeat scroll 0 0;
   padding: 90px 0 81px;
 }
-.single-counter {
-}
+
 .counter-icon {
   float: left;
   margin-right: 20px;
   overflow: hidden;
 }
-.counter-icon i {
-}
+
 .counter-icon span {
   display: block;
   font-size: 44px;
@@ -733,8 +707,7 @@ TEAM AREA CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-.team_thumb img {
-}
+
 .single_team:hover .team_thumb:before {
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -807,8 +780,7 @@ TESTIMONIAL AREA CSS
 .single_testi {
   text-align: center;
 }
-.testi_thumb {
-}
+
 .testi_thumb span {
   border: 2px solid #ddd;
   border-radius: 100%;
@@ -819,8 +791,7 @@ TESTIMONIAL AREA CSS
   width: 90px;
   color: #333;
 }
-.testi_desg {
-}
+
 .testi_desg h3 {
   color: #333;
   font-size: 17px;
@@ -833,10 +804,7 @@ TESTIMONIAL AREA CSS
   font-size: 16px;
   padding-top: 5px;
 }
-.testi_content {
-}
-.testi_desc {
-}
+
 .testi_desc p {
   margin: auto;
   width: 67%;
@@ -857,8 +825,7 @@ BLOG AREA CSS
 .single_blog:hover {
   box-shadow: 0 5px 17px 0 rgba(0, 0, 0, 0.15);
 }
-.blog_thumb {
-}
+
 .blog_thumb a {
   position: relative;
   display: block;
@@ -880,8 +847,7 @@ BLOG AREA CSS
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
-.blog_thumb img {
-}
+
 .blog_content {
   padding: 22px 20px 16px;
 }
@@ -902,8 +868,7 @@ BLOG AREA CSS
 .blog_content h2 a:hover {
   color: #000;
 }
-.post_meta {
-}
+
 .post_meta span {
   font-size: 12px;
   font-weight: 400;
@@ -941,19 +906,16 @@ FOOTER AREA CSS
 ======================*/
 
 .footer_area {
-  background: #f9f9f9 none repeat scroll 0 0;
   padding: 87px 0 85px;
 }
-.coppyright {
-}
+
 .footer_logo {
   font-size: 48px;
   font-style: italic;
   font-weight: bold;
   text-align: center;
 }
-.footer_logo a {
-}
+
 .footer_logo h3 {
   font-style: normal;
   letter-spacing: 5px;
@@ -1299,8 +1261,7 @@ BREADCRUMB AREA CSS
   padding-bottom: 10px;
   text-transform: uppercase;
 }
-.brid_tittle ul {
-}
+
 .brid_tittle ul li {
   display: inline-block;
   position: relative;
@@ -1334,8 +1295,6 @@ SIDEBAR  AREA CSS
 SEARCH WIDGET CSS
 ======================*/
 
-.blog-left-side.widget {
-}
 .blog-left-side.widget > div {
   margin-bottom: 30px;
   padding: 15px;
@@ -1381,8 +1340,7 @@ SEARCH WIDGET CSS
   position: relative;
   width: 100%;
 }
-.search_field input[type="text"] {
-}
+
 .search_field input::-ms-input-placeholder,
 .search_field input::-webkit-placeholder,
 .search_field input::-moz-placeholder {
@@ -1400,18 +1358,11 @@ SEARCH WIDGET CSS
   top: 50%;
   transform: translateY(-50%);
 }
-.search_field button i {
-}
+
 /*====================
 CATEGORY WIDGET CSS
 ======================*/
 
-.category {
-}
-.category h2 {
-}
-.category ul {
-}
 .category ul li {
   padding-bottom: 6px;
   position: relative;
@@ -1448,8 +1399,6 @@ CATEGORY WIDGET CSS
 TAG WIDGET CSS
 ======================*/
 
-.tags {
-}
 .tags a {
   background: #f6f6f6 none repeat scroll 0 0;
   border-radius: 5px;
@@ -1475,8 +1424,6 @@ TAG WIDGET CSS
 RECENT POST WIDGET CSS
 ======================*/
 
-.recent-post {
-}
 .r-post {
   padding-bottom: 20px;
   overflow: hidden;
