@@ -5,7 +5,14 @@ require_once '../include/function.php';
 $skill_title = $_POST['skill_title'];
 $skill_value = $_POST['skill_value'];
 
+// if ($skill_value <= 100) {
+// if ($skill_value >= 40) {
 
+//    echo "thik ase";
+// } else {
+//    echo "thik nai";
+// }
+// die();
 // session veriable
 $_SESSION['skill_title'] = $_POST['skill_title'];
 $_SESSION['skill_value'] = $_POST['skill_value'];
@@ -23,8 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (!$skill_value) {
       $_SESSION['skill_value_requried'] = "*Skill Value is requried";
       $error = true;
-   } elseif ($skill_value <= 40) {
-      $_SESSION['skill_value_invalid'] = "*It is not valid skill value. Value need minimum 40";
+   }
+   if ($skill_value <= 40 || $skill_value >= 100) {
+      $_SESSION['skill_value_invalid'] = "*It is not valid skill value. Value need minimum 40 and maximum 100";
       $error = true;
    }
 
@@ -40,9 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          header("location: skill.php");
       } else {             // skill title exist
          $_SESSION['skill_title_exist'] = "*This skill title is alrady exist";
-         header("location: skill.php");
+         back();
       }
    }      // error == true
-   header('location:' . $_SERVER['HTTP_REFERER']);
 }
-header("location: skill.php");
+back();

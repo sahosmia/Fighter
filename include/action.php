@@ -7,10 +7,11 @@ require_once '../include/function.php';
 $table = $_GET['table_name'];
 $action = $_GET['action'];
 $id = $_GET['id'];
-$status = isset($_GET['status']);
 
 
-
+if (isset($_GET['status'])) {
+   $status = $_GET['status'];
+}
 
 
 
@@ -34,4 +35,4 @@ if ($action == 'delete_all') {
 }
 
 
-header('location:' . $_SERVER['HTTP_REFERER']);
+back();

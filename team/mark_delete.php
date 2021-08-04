@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $delete_query = "DELETE FROM teams WHERE id = $data";
          mysqli_query(db(), $delete_query);
       }
-      header('location:' . $_SERVER['HTTP_REFERER']);
+      back();
    }
 } else {            // error == true
-   header('location:' . $_SERVER['HTTP_REFERER']);
+   back();
 }

@@ -70,9 +70,9 @@ function user_name_read($user_id)
    $user_assoc = mysqli_fetch_assoc($user_form_db);
    return $user_assoc['name'];
 }
-function where_data_read($table_name, $user_id)
+function where_data_read($table_name, $id)
 {
-   $user_query = "SELECT * FROM $table_name WHERE id = $user_id";
+   $user_query = "SELECT * FROM $table_name WHERE id = $id";
    $user_form_db = mysqli_query(db(), $user_query);
    $user_assoc = mysqli_fetch_assoc($user_form_db);
    return $user_assoc;
@@ -97,6 +97,7 @@ function delete_all($table_name)
    mysqli_query(db(), $delete_query);
 }
 
-function test()
+function back()
 {
+   header('location:' . $_SERVER['HTTP_REFERER']);
 }

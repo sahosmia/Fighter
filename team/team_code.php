@@ -85,17 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $update_query =  "UPDATE teams SET linkdin = '$team_linkdin' WHERE id = $last_id";
          mysqli_query($db_connect, $update_query);
       }
-      // print_r($last_id);
-
-
-
-
-
       $_SESSION['team_success'] = "team Add successfull.";
-      header("location: team.php");
-   } else {            // error == true
-      header("location: team.php");
+      back();
    }
-} else {            // error == true
-   header("location: team.php");
 }
+back();

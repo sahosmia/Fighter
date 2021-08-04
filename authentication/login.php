@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../include/header.php';
+require_once '../include/header.php';
 
 ?>
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
@@ -80,5 +80,5 @@ include '../include/header.php';
    </div><!-- login-wrapper -->
 </div><!-- d-flex -->
 <?php
-include '../include/footer.php';
+require_once '../include/footer.php';
 ?>

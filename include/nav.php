@@ -53,7 +53,17 @@
             <span class="menu-item-label">Auto Counter</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../team/team.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/team/team.php") ? "active" : "" ?> ">
+      <?php
+      if (isset($_GET['table_name'])) {
+
+         $table_name = $_GET['table_name'];
+      }
+      if (isset($_GET['id'])) {
+
+         $id = $_GET['id'];
+      }
+      ?>
+      <a href="../team/team.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/team/team.php") || ($_SERVER['REQUEST_URI'] == "/new_php/team/team_update.php?table_name=$table_name&id=$id") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
             <span class="menu-item-label">Team</span>
@@ -65,27 +75,8 @@
             <span class="menu-item-label">Setting</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="mailbox.html" class="br-menu-link">
-         <div class="br-menu-item">
-            <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-            <span class="menu-item-label">Mailbox</span>
-         </div><!-- menu-item -->
-      </a><!-- br-menu-link -->
 
 
-
-      <a href="#" class="br-menu-link">
-         <div class="br-menu-item">
-            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-            <span class="menu-item-label">UI Elements</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-         </div><!-- menu-item -->
-      </a><!-- br-menu-link -->
-      <ul class="br-menu-sub nav flex-column">
-         <li class="nav-item"><a href="accordion.html" class="nav-link">Accordion</a></li>
-         <li class="nav-item"><a href="alerts.html" class="nav-link">Alerts</a></li>
-         <li class="nav-item"><a href="buttons.html" class="nav-link">Buttons</a></li>
-      </ul>
 
 
       <a href="../index.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/index.php") ? "active" : "" ?> ">

@@ -60,16 +60,20 @@ $teams = data_read("teams", 0);  // 0 == all, 1 == hide_status, 2 == show_status
                               foreach ($teams as $data) :
                               ?>
                                  <tr>
-                                    <td><input type="checkbox" name="select_item[]" value="<?= $data['id'] ?>"></td>
+                                    <td width='25'><input type="checkbox" name="select_item[]" value="<?= $data['id'] ?>"></td>
                                     <td><?= $count++ ?></td>
 
-                                    <td width='250'><img src="../upload/team/<?= $data['img'] ?>" alt="" class="w-100"></td>
-                                    <td width='250' class="text-left">
+                                    <td width='100'><img src="../upload/team/<?= $data['img'] ?>" alt="" class="w-100"></td>
+                                    <td width='300' class="text-left">
                                        <ul class="list-unstyled">
                                           <li>Name : <?= $data['name'] ?></li>
                                           <li>Title : <?= $data['title'] ?></li>
-                                          <li>Created at : <?= $data['created_at']                                                        ?></li>
-                                          <li>Added by : <?= user_name_read($data['added_by']);                                                      ?></li>
+                                          <li>Time: <?php
+                                                      $time = strtotime($data['created_at']);
+                                                      echo date('h:i A, l, jS F, Y', $time);
+
+                                                      ?></li>
+                                          <li>Added by : <?= user_name_read($data['added_by']) ?></li>
                                        </ul>
                                     </td>
 
@@ -108,8 +112,8 @@ $teams = data_read("teams", 0);  // 0 == all, 1 == hide_status, 2 == show_status
 
                                     <td>
                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                          <a href="" class="btn btn-teal  pd-x-15"><i class="fa fa-edit"></i></a>
-                                          <a href="../include/action.php?table_name=teams&id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['status']) ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
+                                          <a href="team_update.php?table_name=teams&id=<?= $data['id'] ?>" class="btn btn-teal  pd-x-15"><i class="fa fa-edit"></i></a>
+                                          <a href="../include/action.php?table_name=teams&id=<?= $data['id'] ?>&action=show_hide&status=<?= $data['status'] ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
                                           <a href="../include/action.php?table_name=teams&id=<?= $data['id'] ?>&action=img_delete&img_path=../upload/team/<?= $data['img'] ?>" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
                                        </div>
                                     </td>
@@ -192,12 +196,12 @@ $teams = data_read("teams", 0);  // 0 == all, 1 == hide_status, 2 == show_status
                         </div>
                         <div class="form-group">
                            <label>Team Member Title</label>
-                           <input placeholder="Enter your team member title" type="text" name="team_title" class="form-control <?= (isset($_SESSION['team__requried'])) ? "is-invalid" : "" ?>" value="<?php
-                                                                                                                                                                                                         if (isset($_SESSION['team_title'])) {
-                                                                                                                                                                                                            echo $_SESSION['team_title'];
-                                                                                                                                                                                                            unset($_SESSION['team_title']);
-                                                                                                                                                                                                         }
-                                                                                                                                                                                                         ?>">
+                           <input placeholder="Enter your team member title" type="text" name="team_title" class="form-control <?= (isset($_SESSION['team_title_requried'])) ? "is-invalid" : "" ?>" value="<?php
+                                                                                                                                                                                                            if (isset($_SESSION['team_title'])) {
+                                                                                                                                                                                                               echo $_SESSION['team_title'];
+                                                                                                                                                                                                               unset($_SESSION['team_title']);
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                            ?>">
                            <small class="text-danger">
                               <?php
                               if (isset($_SESSION['team_title_requried'])) {
@@ -210,12 +214,12 @@ $teams = data_read("teams", 0);  // 0 == all, 1 == hide_status, 2 == show_status
 
                         <div class="form-group">
                            <label>Facebook</label>
-                           <input placeholder="Enter your Facebook link" type="text" name="team_facebook" class="form-control <?= (isset($_SESSION['team__requried'])) || (isset($_SESSION['team__exist'])) ? "is-invalid" : "" ?>" value="<?php
-                                                                                                                                                                                                                                             if (isset($_SESSION['team_facebook'])) {
-                                                                                                                                                                                                                                                echo $_SESSION['team_facebook'];
-                                                                                                                                                                                                                                                unset($_SESSION['team_facebook']);
-                                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                                             ?>">
+                           <input placeholder="Enter your Facebook link" type="text" name="team_facebook" class="form-control <?= (isset($_SESSION['team_facebook_requried'])) ? "is-invalid" : "" ?>" value="<?php
+                                                                                                                                                                                                               if (isset($_SESSION['team_facebook'])) {
+                                                                                                                                                                                                                  echo $_SESSION['team_facebook'];
+                                                                                                                                                                                                                  unset($_SESSION['team_facebook']);
+                                                                                                                                                                                                               }
+                                                                                                                                                                                                               ?>">
                            <small class="text-danger">
                               <?php
                               if (isset($_SESSION['team_facebook_requried'])) {

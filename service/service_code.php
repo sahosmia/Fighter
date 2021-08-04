@@ -12,14 +12,6 @@ $_SESSION['service_title'] = $_POST['service_title'];
 $_SESSION['service_description'] = $_POST['service_description'];
 $_SESSION['service_icon'] = $_POST['service_icon'];
 
-$date = date('Y-m-d H:i:s');
-$auth = $_SESSION['auth']['id'];
-
-
-// echo $auth;
-// die();
-// if condition start
-$error = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // Title
    if (!$service_title) {
@@ -46,12 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $insert_query =  "INSERT INTO services (service_title, service_description, service_icon, added_by, created_at) VALUES ('$service_title', '$service_description', '$service_icon', '$auth', '$date')";
          mysqli_query(db(), $insert_query);
          $_SESSION['service_success'] = "service Add successfull.";
-         header("location: service.php");
+         back();
       } else {             // service title exist
          $_SESSION['service_title_exist'] = "*This service title is alrady exist";
-         header("location: service.php");
+         back();
       }
    } else {            // error == true
-      header("location: service.php");
+      back();
    }
 }

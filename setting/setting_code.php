@@ -9,9 +9,6 @@ $type = $_POST['type'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
-
-
    //  ****************        banner img           ****************
 
    if ($type == 'banner_img') {
@@ -41,13 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $update_query =  "UPDATE settings SET val = '$new_name' WHERE item = 'banner'";
          mysqli_query(db(), $update_query);
          $_SESSION['banner_success'] = "banner Add successfull.";
-         header("location: setting.php");
+         back();
       } else {            // error == true
-         header("location: setting.php");
+         back();
       }
    }
-
-
 
    //  ****************        about img           ****************
 
@@ -78,10 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $update_query =  "UPDATE settings SET val = '$new_name' WHERE item = 'about_img'";
          mysqli_query(db(), $update_query);
          $_SESSION['about_success'] = "about Add successfull.";
-         // header("location: setting.php");
+         back();
       } else {            // error == true
-
-         // header("location: setting.php");
+         back();
       }
    }
 
@@ -114,20 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
          echo "done";
          $_SESSION['about_success'] = "about Add successfull.";
-         // header("location: setting.php");
+         back();
       } else {            // error == true
-         echo "ase";
-
-         header("location: setting.php");
+         back();
       }
    }
-
 
    //  ****************        banner img           ****************
 
    if ($type == 'socail_midia') {
-      $_SESSION['about_des'] = $_POST['about_des'];
-      $_SESSION['footer_des'] = $_POST['footer_des'];
+      $_SESSION['facebook'] = $_POST['facebook'];
+      $_SESSION['twitter'] = $_POST['twitter'];
       $_SESSION['tumblr'] = $_POST['tumblr'];
       $_SESSION['linkedin'] = $_POST['linkedin'];
 
@@ -154,24 +145,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
 
       if ($error == false) {
-         $update_query =  "UPDATE settings SET val = '$about_des' WHERE item = 'about_des'";
-         mysqli_query(db(), $update_query);
-         $update_query =  "UPDATE settings SET val = '$footer_des' WHERE item = 'footer_des'";
-         mysqli_query(db(), $update_query);
-         $update_query =  "UPDATE settings SET val = '$tumblr' WHERE item = 'tumblr'";
-         mysqli_query(db(), $update_query);
-         $update_query =  "UPDATE settings SET val = '$linkedin' WHERE item = 'linkedin'";
-         mysqli_query(db(), $update_query);
-         echo "done";
-         $_SESSION['about_success'] = "about Add successfull.";
-         // header("location: setting.php");
-      } else {            // error == true
-         echo "ase";
 
-         header("location: setting.php");
+         foreach ($_POST as $data => $val) {
+
+            $update_query =  "UPDATE settings SET val = '$val' WHERE item = '$data'";
+            mysqli_query(db(), $update_query);
+         }
+
+         $_SESSION['about_success'] = "about Add successfull.";
+         back();
+      } else {            // error == true
+         back();
       }
-      echo 'socail_midia';
    }
-} else {            // error == true
-   header("location: setting.php");
 }
+back();

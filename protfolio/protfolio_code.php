@@ -9,19 +9,7 @@ $catagory = $_POST['catagory'];
 $img = $_FILES['protfolio_img']['name'];
 $img_explode = explode('.', $img);
 $img_ext = end($img_explode);
-$extensions = array("jpeg", "jpg", "png");
-
-
-
-
-// print_r($_FILES['protfolio_img']);
-// print_r($_POST);
-// echo "done";
-// echo $_POST['catagory'];
-// header("location: protfolio.php");
-
-// die();
-// if condition start
+$extensions = array("jpeg", "jpg", "png", "gif", "JPG", "JPEG", "PNG", "GIF");
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -48,15 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $temp_loc = $_FILES['protfolio_img']['tmp_name'];
       $new_loc = '../upload/protfolio/' . $new_name;
       move_uploaded_file($temp_loc, $new_loc);
-      // $insert_query =  "INSERT INTO protfolios (img, catagory_id, added_by, created_at) VALUES ('$new_name', '$catagory' '$auth', '$date')";
-      // $insert_query =  "INSERT INTO protfolios (img, catagory_id, added_by, created_at) VALUES ('$new_name', '$catagory' '$auth', '$date')";
       $insert_query =  "INSERT INTO protfolios (img, catagory_id, added_by, created_at) VALUES ('$new_name', '$catagory', '$auth', '$date')";
       mysqli_query(db(), $insert_query);
       $_SESSION['protfolio_success'] = "protfolio Add successfull.";
-      header("location: protfolio.php");
+      back();
    } else {            // error == true
-      header("location: protfolio.php");
+      back();
    }
 } else {            // error == true
-   header("location: protfolio.php");
+   back();
 }

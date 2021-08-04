@@ -43,8 +43,6 @@ require_once '../include/nav.php';
                         <tbody>
                            <?php
                            foreach ($skills as $data) :
-                              echo $_SERVER['REQUEST_URI'];
-
                            ?>
                               <tr>
                                  <td><?= $count++ ?></td>
@@ -53,7 +51,7 @@ require_once '../include/nav.php';
                                  <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                        <a href="" class="btn btn-teal  pd-x-15"><i class="fa fa-edit"></i></a>
-                                       <a href="../include/action.php?table_name=skills&id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['status'] == 1) ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
+                                       <a href="../include/action.php?table_name=skills&id=<?= $data['id'] ?>&action=show_hide&status=<?= $data['status'] ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
                                        <a href="../include/action.php?table_name=skills&id=<?= $data['id'] ?>&action=single_delete" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
                                     </div>
 

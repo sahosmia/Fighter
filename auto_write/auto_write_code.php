@@ -1,5 +1,6 @@
 <?php
 require_once '../include/function.php';
+$db_connect = mysqli_connect('localhost', 'root', '', 'autentication');
 
 
 // veriable
@@ -25,22 +26,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // // error == false 
    if ($error == false) {
       $title_query = "SELECT COUNT(*) AS count FROM auto_writes WHERE auto_write_title = '$title'";   //chack auto_write_title is resgisted or not query
-      $title_form_db = mysqli_query(db(), $title_query);
+      $title_form_db = mysqli_query($db_connect, $title_query);
       $title_assoc = mysqli_fetch_assoc($title_form_db);
       if ($title_assoc['count'] == 0) {                       // auto_write_title not exist
          $insert_query =  "INSERT INTO auto_writes (auto_write_title, added_by, created_at) VALUES ('$title', '$auth', '$date')";
-         mysqli_query(db(), $insert_query);
+         mysqli_query($db_connect, $insert_query);
+         unset($_SESSION['auto_write_title']);
          $_SESSION['auto_write_success'] = "Title Add successfull.";
-         header("location: auto_write.php");
+         back();
       } else {             // auto_write title exist
          $_SESSION['auto_write_title_exist'] = "*This auto write title is alrady exist";
-         header("location: auto_write.php");
+         back();
       }
    } else {            // error == true
-      header("location: auto_write.php");
+      back();
    }
 } else {
-   header('location:' . $_SERVER['HTTP_REFERER']);
+   back();
 }
 
 
