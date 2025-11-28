@@ -10,7 +10,7 @@ $error = false;
 define("server", "localhost");
 define("username", "root");
 define("password", "");
-define("database", "autentication");
+define("database", "fighter");
 function db()
 {
    $db_connect = mysqli_connect(server, username, password, database);

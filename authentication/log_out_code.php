@@ -1,6 +1,11 @@
 <?php
 session_start();
-unset($_SESSION['log_chack_email']);
-unset($_SESSION['log_chack']);
 
-header("location: login.php");
+unset($_SESSION['auth']); // logged user data remove
+unset($_SESSION['error']); 
+unset($_SESSION['old']);   
+
+session_destroy(); 
+
+header("Location: login.php");
+exit();

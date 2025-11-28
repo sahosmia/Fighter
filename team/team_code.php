@@ -1,6 +1,6 @@
 <?php
 require_once '../include/function.php';
-$db_connect = mysqli_connect('localhost', 'root', '', 'autentication');
+$db_connect = mysqli_connect('localhost', 'root', '', 'fighter');
 
 // session veriable
 $_SESSION['team_img'] = $_FILES['team_img'];

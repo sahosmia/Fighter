@@ -1,5 +1,8 @@
 <?php
-if (!isset($_SESSION['log_chack'])) {
-   $_SESSION['deny_error'] = "please Log in first";
-   header("location: ../authentication/login.php");
+session_start();
+
+if (!isset($_SESSION['auth'])) {
+    $_SESSION['deny_error'] = "Please log in first!";
+    header("Location: ../authentication/login.php");
+    exit();
 }

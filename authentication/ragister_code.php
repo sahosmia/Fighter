@@ -1,69 +1,72 @@
 <?php
-
+session_start();
 require_once '../include/function.php';
 
-// veriable
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$confirm_password = $_POST['confirm_password'];
+// collect inputs
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$password = trim($_POST['password']);
+$confirm_password = trim($_POST['confirm_password']);
 
+$_SESSION['old'] = [
+    'name' => $name,
+    'email' => $email
+];
 
-// session veriable
-$_SESSION['reg_name'] = $_POST['name'];
-$_SESSION['reg_email'] = $_POST['email'];
-$_SESSION['reg_password'] = $_POST['password'];
-$_SESSION['reg_confirm_password'] = $_POST['confirm_password'];
+$errors = [];
 
-
-// if condition start
-$error = false;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   // name
-   if (!$name) {
-      $_SESSION['reg_name_requried'] = "*Name filde is requried";
-      $error = true;
-   }
-   // email
-   if (!$email) {
-      $_SESSION['reg_email_requried'] = "*Email filde is requried";
-      $error = true;
-   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $_SESSION['reg_email_invalid'] = "*It is not valid email";
-      $error = true;
-   }
-   // password
-   if (!$password) {
-      $_SESSION['reg_password_requried'] = "*Password filde is requried";
-      $error = true;
-   }
-   // conform password
-   if (!$confirm_password) {
-      $_SESSION['reg_confirm_password_requried'] = "*Confirm Password filde is requried";
-      $error = true;
-   } elseif ($confirm_password != $password) {
-      $_SESSION['confirm_password_match'] = "*Don't Match Your Confirm password with Pssword";
-      $error = true;
-   }
-
-   // error == false 
-   if ($error == false) {
-      $email_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email'";   //chack email is resgisted or not query
-      $email_form_db = mysqli_query(db(), $email_query);
-      $email_assoc = mysqli_fetch_assoc($email_form_db);
-      if ($email_assoc['count'] == 0) {                       // email not exist
-         $after_encript_password = md5($password);
-         $insert_query =  "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$after_encript_password')";
-         mysqli_query(db(), $insert_query);
-         $_SESSION['reg_success'] = "Register successfull. You can log in now";
-         header("location: login.php");
-      } else {             // email exist
-         $_SESSION['reg_email_exist'] = "*This email is alrady exist";
-         header("location: register.php");
-      }
-   } else {            // error == true
-      header("location: register.php");
-   }
-} else {
-   header("location: register.php");
+// Validation -----------------------
+if (!$name) {
+    $errors['name'] = "Name is required";
 }
+
+if (!$email) {
+    $errors['email'] = "Email is required";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = "Invalid email format";
+}
+
+if (!$password) {
+    $errors['password'] = "Password is required";
+}
+
+if (!$confirm_password) {
+    $errors['confirm_password'] = "Confirm password is required";
+} elseif ($password !== $confirm_password) {
+    $errors['confirm_password'] = "Passwords do not match";
+}
+
+// If error exists
+if (!empty($errors)) {
+    $_SESSION['error'] = $errors;
+    header("Location: register.php");
+    exit();
+}
+
+// Check if email exists (SQL injection safe)
+$con = db();
+$stmt = $con->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $_SESSION['error']['email'] = "This email already exists";
+    header("Location: register.php");
+    exit();
+}
+
+// Register user ----------------------
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$insert = $con->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+$insert->bind_param("sss", $name, $email, $hashed_password);
+$insert->execute();
+
+$_SESSION['success'] = "Registration successful. Please login.";
+
+// Clear old inputs on success
+unset($_SESSION['old']);
+
+header("Location: login.php");
+exit();

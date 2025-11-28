@@ -1,56 +1,77 @@
 <?php
+session_start();
 require_once '../include/function.php';
 
-// veriable
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = trim($_POST['email'] ?? '');
+$password = trim($_POST['password'] ?? '');
 
-// session veriable
-$_SESSION['log_email'] = $_POST['email'];
-$_SESSION['log_password'] = $_POST['password'];
+$_SESSION['old'] = [
+    'email' => $email
+];
 
+$errors = [];
 
-// if condition start
-$error = false;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-   // email
-   if (!$email) {
-      $_SESSION['log_email_requried'] = "*Email filde is requried";
-      $error = true;
-   }
-
-   // password
-   if (!$password) {
-      $_SESSION['log_password_requried'] = "*Password filde is requried";
-      $error = true;
-   }
-
-   if ($error == false) {                  // error not show
-      $email_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email'";
-      $email_form_db = mysqli_query(db(), $email_query);
-      $email_assoc = mysqli_fetch_assoc($email_form_db);
-      if ($email_assoc['count'] == 1) {                    // check registered email
-         $after_encript_password = md5($password);
-         $password_query = "SELECT COUNT(*) AS count FROM users WHERE email = '$email' AND password = '$after_encript_password'";
-         $password_form_db = mysqli_query(db(), $password_query);
-         $password_assoc = mysqli_fetch_assoc($password_form_db);
-         if ($password_assoc['count'] == 1) {
-            $select_query =  "SELECT * FROM users WHERE email = '$email'";
-            $db_mysqli_query = mysqli_query(db(), $select_query);
-            $select_assoc = mysqli_fetch_assoc($db_mysqli_query);
-            $_SESSION['auth'] = array('id' => $select_assoc['id'], 'name' => $select_assoc['name'], 'email' => $email, 'password' => $select_assoc['password']);
-            $_SESSION['log_chack'] = true;
-            header("location: ../dasbord/dasbord.php");
-         } else {
-            $_SESSION['log_password_wrong'] = "*Your password is wrong";
-            header("location: login.php");
-         }
-      } else {
-         $_SESSION['log_valid_email'] = "*This email is not registed";
-         header("location: login.php");
-      }
-   } else {
-      header('location:' . $_SERVER['HTTP_REFERER']);
-   }
+/* -------------------------
+   Validation
+--------------------------*/
+if (!$email) {
+    $errors['email'] = "Email is required";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = "Invalid email format";
 }
+
+if (!$password) {
+    $errors['password'] = "Password is required";
+}
+
+/* -------------------------
+   Stop if validation fails
+--------------------------*/
+if (!empty($errors)) {
+    $_SESSION['error'] = $errors;
+    header("Location: login.php");
+    exit();
+}
+
+/* -------------------------
+   Database Query
+--------------------------*/
+$con = db();
+$stmt = $con->prepare("SELECT id,name,email,password FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+/* -------------------------
+   Email Check
+--------------------------*/
+if ($result->num_rows < 1) {
+    $_SESSION['error']['email'] = "This email is not registered";
+    header("Location: login.php");
+    exit();
+}
+
+$user = $result->fetch_assoc();
+
+/* -------------------------
+   Password Check
+--------------------------*/
+if (!password_verify($password, $user['password'])) {
+    $_SESSION['error']['password'] = "Incorrect password";
+    header("Location: login.php");
+    exit();
+}
+
+/* -------------------------
+   Login Success
+--------------------------*/
+$_SESSION['auth'] = [
+    "id" => $user['id'],
+    "name" => $user['name'],
+    "email" => $user['email']
+];
+
+unset($_SESSION['error'], $_SESSION['old']);
+
+header("Location: ../dasbord/dasbord.php");
+exit();
