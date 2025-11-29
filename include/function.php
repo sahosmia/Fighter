@@ -15,10 +15,15 @@ define("password", "");
 define("database", "fighter");
 function db()
 {
-   $db_connect = mysqli_connect(server, username, password, database);
-   return $db_connect;
-}
+    $con = mysqli_connect(server, username, password, database);
 
+    // ERROR CHECKING (shows real problem)
+    if (!$con) {
+        die("Database Connection Failed: " . mysqli_connect_error());
+    }
+
+    return $con;
+}
 // data read 
 function data_read($table_name, $status)
 {
@@ -120,7 +125,7 @@ function check_guest()
 {
    if (isset($_SESSION['auth']['id'])) {
       $_SESSION['deny_error'] = "You are already logged in!";
-      redirect("../dasbord/dasbord.php");
+      redirect("../dashboard/dashboard.php");
       exit();  }
 }
 

@@ -5,7 +5,7 @@
    <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
    <div class="br-sideleft-menu">
 
-      <a href="../dasbord/dasbord.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/dasbord/dasbord.php") ? "active" : "" ?> ">
+      <a href="../dashboard/dashboard.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/dashboard/dashboard.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
@@ -35,16 +35,16 @@
             <span class="menu-item-label">Service</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../protfolio/protfolio.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/protfolio/protfolio.php") ? "active" : "" ?> ">
+      <a href="../portfolio/portfolio.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/portfolio/portfolio.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
-            <span class="menu-item-label">protfolio</span>
+            <span class="menu-item-label">portfolio</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
-      <a href="../protfolio/protfolio_catagory.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/protfolio/protfolio_catagory.php") ? "active" : "" ?> ">
+      <a href="../portfolio/portfolio_category.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/portfolio/portfolio_category.php") ? "active" : "" ?> ">
          <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-24"></i>
-            <span class="menu-item-label">protfolio Catagory</span>
+            <span class="menu-item-label">portfolio category</span>
          </div><!-- menu-item -->
       </a><!-- br-menu-link -->
       <a href="../auto_counter/auto_counter.php" class="br-menu-link <?= ($_SERVER['REQUEST_URI'] == "/new_php/auto_counter/auto_counter.php") ? "active" : "" ?> ">

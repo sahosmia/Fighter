@@ -9,8 +9,8 @@ require_once '../include/header.php';
 require_once '../include/nav.php';
 
 
-$protfolios = data_read("protfolios", 0);  // 0 == all, 1 == hide_status, 2 == show_status
-$protfolio_catagories = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_status, 2 == show_status
+$portfolios = data_read("portfolios", 0);  // 0 == all, 1 == hide_status, 2 == show_status
+$portfolio_categories = data_read("portfolio_categories", 0);  // 0 == all, 1 == hide_status, 2 == show_status
 
 
 ?>
@@ -18,8 +18,8 @@ $protfolio_catagories = data_read("protfolio_catagories", 0);  // 0 == all, 1 ==
 <div class="br-mainpanel">
    <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
-         <a class="breadcrumb-item" href="../dasbord/dasbord.php">Bracket</a>
-         <span class="breadcrumb-item active text-capitalize">protfolio</span>
+         <a class="breadcrumb-item" href="../dashboard/dashboard.php">Bracket</a>
+         <span class="breadcrumb-item active text-capitalize">portfolio</span>
       </nav>
    </div>
    <!-- br-pageheader -->
@@ -44,21 +44,21 @@ $protfolio_catagories = data_read("protfolio_catagories", 0);  // 0 == all, 1 ==
                         </thead>
                         <tbody>
                            <?php
-                           foreach ($protfolios as $data) :
+                           foreach ($portfolios as $data) :
                            ?>
                               <tr>
                                  <td><?= $count++ ?></td>
-                                 <td width='250'><img src="../upload/protfolio/<?= $data['img'] ?>" alt="" class="w-100"></td>
+                                 <td width='250'><img src="../upload/portfolio/<?= $data['img'] ?>" alt="" class="w-100"></td>
                                  <td width='250' class="text-left">
-                                    <li>Catagory : <?= where_data_read('protfolio_catagories', $data['catagory_id'])['name'] ?></li>
+                                    <li>category : <?= where_data_read('portfolio_categories', $data['category_id'])['name'] ?></li>
                                     <li>Created at : <?= $data['created_at'] ?></li>
                                     <li>Added by : <?= user_name_read($data['added_by']) ?></li>
                                  </td>
                                  <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                        <a href="" class="btn btn-teal  pd-x-15"><i class="fa fa-edit"></i></a>
-                                       <a href="../include/action.php?table_name=protfolios&id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['status']) ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
-                                       <a href="../include/action.php?table_name=protfolios&id=<?= $data['id'] ?>&action=img_delete&img_path=../upload/protfolio/<?= $data['img'] ?>" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
+                                       <a href="../include/action.php?table_name=portfolios&id=<?= $data['id'] ?>&action=show_hide&status=<?= ($data['status']) ?>" class="btn btn-<?= ($data['status'] == 1) ? "warning" : "primary" ?> pd-x-15"><i class="fa <?= ($data['status'] == 1) ? "fa-eye" : "fa-eye-slash" ?>"></i></a>
+                                       <a href="../include/action.php?table_name=portfolios&id=<?= $data['id'] ?>&action=img_delete&img_path=../upload/portfolio/<?= $data['img'] ?>" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
                                     </div>
                                  </td>
                               </tr>
@@ -78,56 +78,56 @@ $protfolio_catagories = data_read("protfolio_catagories", 0);  // 0 == all, 1 ==
                      </table>
                   </div>
                   <div class="card-footer bg-teal text-light text-uppercase">
-                     total : <?= $protfolios->num_rows ?>
+                     total : <?= $portfolios->num_rows ?>
                   </div>
                </div>
             </div>
             <div class="col-md-3">
                <div class="card border-success">
                   <div class="card-header text-center bg-teal text-light">
-                     Protfolio Add++ <span class="ti-settings"></span>
+                     portfolio Add++ <span class="ti-settings"></span>
                   </div>
                   <div class="card-body">
 
                      <?php
-                     if (isset($_SESSION['protfolio_success'])) :
+                     if (isset($_SESSION['portfolio_success'])) :
                      ?>
                         <div class="alert alert-success" role="alert">
-                           <?= $_SESSION['protfolio_success'] ?>
+                           <?= $_SESSION['portfolio_success'] ?>
                         </div>
                      <?php
-                        unset($_SESSION['protfolio_success']);
+                        unset($_SESSION['portfolio_success']);
                      endif;
                      ?>
-                     <form action="protfolio_code.php" method="post" enctype="multipart/form-data">
+                     <form action="portfolio_code.php" method="post" enctype="multipart/form-data">
 
 
 
-                        <select class="form-control" name="catagory">
+                        <select class="form-control" name="category">
                            <option selected value="">Open this select menu</option>
                            <?php
-                           foreach ($protfolio_catagories as $data) :
+                           foreach ($portfolio_categories as $data) :
                            ?>
                               <option value="<?= $data['id'] ?>" <?php
 
-                                                                  if (isset($_SESSION['catagory'])) {
-                                                                     if ($_SESSION['catagory'] == $data['id']) {
+                                                                  if (isset($_SESSION['category'])) {
+                                                                     if ($_SESSION['category'] == $data['id']) {
                                                                         echo "selected";
                                                                      }
                                                                   }
                                                                   ?>><?= $data['name'] ?></option>
                            <?php
                            endforeach;
-                           unset($_SESSION['catagory']);
+                           unset($_SESSION['category']);
                            ?>
 
                         </select>
 
                         <small class="text-danger">
                            <?php
-                           if (isset($_SESSION['catagory_requried'])) {
-                              echo $_SESSION['catagory_requried'];
-                              unset($_SESSION['catagory_requried']);
+                           if (isset($_SESSION['category_requried'])) {
+                              echo $_SESSION['category_requried'];
+                              unset($_SESSION['category_requried']);
                            }
 
                            ?>
@@ -137,18 +137,18 @@ $protfolio_catagories = data_read("protfolio_catagories", 0);  // 0 == all, 1 ==
                         <div class="form-group">
                            <label>new file</label>
 
-                           <input type="file" class="form-control-file <?= (isset($_SESSION['protfolio_img_requried'])) ? "is-invalid" : "" ?>" name="protfolio_img" value="<?php
-                                                                                                                                                                              if (isset($_SESSION['protfolio_img'])) {
-                                                                                                                                                                                 echo $_SESSION['protfolio_img'];
-                                                                                                                                                                                 unset($_SESSION['protfolio_img']);
+                           <input type="file" class="form-control-file <?= (isset($_SESSION['portfolio_img_requried'])) ? "is-invalid" : "" ?>" name="portfolio_img" value="<?php
+                                                                                                                                                                              if (isset($_SESSION['portfolio_img'])) {
+                                                                                                                                                                                 echo $_SESSION['portfolio_img'];
+                                                                                                                                                                                 unset($_SESSION['portfolio_img']);
                                                                                                                                                                               }
                                                                                                                                                                               ?>">
 
                            <small class="text-danger">
                               <?php
-                              if (isset($_SESSION['protfolio_img_requried'])) {
-                                 echo $_SESSION['protfolio_img_requried'];
-                                 unset($_SESSION['protfolio_img_requried']);
+                              if (isset($_SESSION['portfolio_img_requried'])) {
+                                 echo $_SESSION['portfolio_img_requried'];
+                                 unset($_SESSION['portfolio_img_requried']);
                               }
 
                               ?>

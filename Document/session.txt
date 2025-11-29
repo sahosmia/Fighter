@@ -136,14 +136,14 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 *$_SESSION['auto_counter_success']
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-8. protfolio Code 
+8. portfolio Code 
 
 // variable
-*$_SESSION['protfolio_img']
+*$_SESSION['portfolio_img']
 
 
 // error
-*$_SESSION['protfolio_img_requried']
+*$_SESSION['portfolio_img_requried']
 *$_SESSION['auto_counter_title_exist']
 *$_SESSION['auto_counter_value_requried']
 *$_SESSION['auto_counter_logo_requried']

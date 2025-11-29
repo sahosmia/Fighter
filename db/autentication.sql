@@ -75,13 +75,13 @@ INSERT INTO `auto_writes` (`id`, `auto_write_title`, `added_by`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `protfolios`
+-- Table structure for table `portfolios`
 --
 
-CREATE TABLE `protfolios` (
+CREATE TABLE `portfolios` (
   `id` int(10) NOT NULL,
   `img` varchar(200) NOT NULL,
-  `catagory_id` int(10) NOT NULL,
+  `category_id` int(10) NOT NULL,
   `added_by` int(10) NOT NULL,
   `created_at` datetime NOT NULL,
   `status` int(10) NOT NULL DEFAULT 1
@@ -90,10 +90,10 @@ CREATE TABLE `protfolios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `protfolio_catagories`
+-- Table structure for table `portfolio_categories`
 --
 
-CREATE TABLE `protfolio_catagories` (
+CREATE TABLE `portfolio_categories` (
   `id` int(10) NOT NULL,
   `name` varchar(100) NOT NULL,
   `added_by` int(10) NOT NULL,
@@ -102,10 +102,10 @@ CREATE TABLE `protfolio_catagories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `protfolio_catagories`
+-- Dumping data for table `portfolio_categories`
 --
 
-INSERT INTO `protfolio_catagories` (`id`, `name`, `added_by`, `created_at`, `status`) VALUES
+INSERT INTO `portfolio_categories` (`id`, `name`, `added_by`, `created_at`, `status`) VALUES
 (2, 'web design', 1, '2021-07-26 10:29:28', 1),
 (3, 'Creative', 1, '2021-07-26 10:51:08', 1),
 (4, 'app design', 1, '2021-07-26 16:04:42', 1);
@@ -270,15 +270,15 @@ ALTER TABLE `auto_writes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `protfolios`
+-- Indexes for table `portfolios`
 --
-ALTER TABLE `protfolios`
+ALTER TABLE `portfolios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `protfolio_catagories`
+-- Indexes for table `portfolio_categories`
 --
-ALTER TABLE `protfolio_catagories`
+ALTER TABLE `portfolio_categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -334,15 +334,15 @@ ALTER TABLE `auto_writes`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `protfolios`
+-- AUTO_INCREMENT for table `portfolios`
 --
-ALTER TABLE `protfolios`
+ALTER TABLE `portfolios`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `protfolio_catagories`
+-- AUTO_INCREMENT for table `portfolio_categories`
 --
-ALTER TABLE `protfolio_catagories`
+ALTER TABLE `portfolio_categories`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --

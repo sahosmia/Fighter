@@ -33,17 +33,17 @@
    <title>Bracket Responsive Bootstrap 4 Admin Template</title>
 
    <!-- vendor css -->
-   <link href="../asset/dasbord/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-   <link href="../asset/dasbord/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/Ionicons/css/ionicons.css" rel="stylesheet">
    <link href="../asset/frontend/css/themify-icons.css" rel="stylesheet">
 
-   <link href="../asset/dasbord/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-   <link href="../asset/dasbord/lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
-   <link href="../asset/dasbord/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
-   <link href="../asset/dasbord/lib/chartist/chartist.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+   <link href="../asset/dashboard/lib/chartist/chartist.css" rel="stylesheet">
 
    <!-- Bracket CSS -->
-   <link rel="stylesheet" href="../asset/dasbord/css/bracket.css">
+   <link rel="stylesheet" href="../asset/dashboard/css/bracket.css">
 </head>
 
 <body>

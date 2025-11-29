@@ -18,7 +18,7 @@ $errors = [];
 --------------------------*/
 if (!$email) {
     $errors['email'] = "Email is required";
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+} elseif (!filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = "Invalid email format";
 }
 
@@ -75,5 +75,5 @@ $_SESSION['auth'] = [
 
 unset($_SESSION['error'], $_SESSION['old']);
 
-redirect("../dasbord/dasbord.php");
+redirect("../dashboard/dashboard.php");
 exit();

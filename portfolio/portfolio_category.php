@@ -9,7 +9,7 @@ require_once '../include/header.php';
 require_once '../include/nav.php';
 
 
-$protfolios = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_status, 2 == show_status
+$portfolios = data_read("portfolio_categories", 0);  // 0 == all, 1 == hide_status, 2 == show_status
 
 
 ?>
@@ -17,8 +17,8 @@ $protfolios = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_stat
 <div class="br-mainpanel">
    <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
-         <a class="breadcrumb-item" href="../dasbord/dasbord.php">Bracket</a>
-         <span class="breadcrumb-item active text-capitalize">protfolio Catagory</span>
+         <a class="breadcrumb-item" href="../dashboard/dashboard.php">Bracket</a>
+         <span class="breadcrumb-item active text-capitalize">portfolio category</span>
       </nav>
    </div>
    <!-- br-pageheader -->
@@ -43,7 +43,7 @@ $protfolios = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_stat
                         </thead>
                         <tbody>
                            <?php
-                           foreach ($protfolios as $data) :
+                           foreach ($portfolios as $data) :
                            ?>
                               <tr>
                                  <td><?= $count++ ?></td>
@@ -54,7 +54,7 @@ $protfolios = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_stat
                                  </td>
                                  <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                       <a href="../include/action.php?table_name=protfolio_catagories&id=<?= $data['id'] ?>&action=single_delete" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
+                                       <a href="../include/action.php?table_name=portfolio_categories&id=<?= $data['id'] ?>&action=single_delete" class="btn btn-danger pd-x-15"><i class="fa fa-trash"></i></a>
                                     </div>
                                  </td>
                               </tr>
@@ -74,40 +74,40 @@ $protfolios = data_read("protfolio_catagories", 0);  // 0 == all, 1 == hide_stat
                      </table>
                   </div>
                   <div class="card-footer bg-teal text-light text-uppercase">
-                     total : <?= $protfolios->num_rows ?>
+                     total : <?= $portfolios->num_rows ?>
                   </div>
                </div>
             </div>
             <div class="col-md-3">
                <div class="card border-success">
                   <div class="card-header text-center bg-teal text-light">
-                     Protfolio Catagory Add++
+                     portfolio category Add++
                   </div>
                   <div class="card-body">
                      <?php
-                     if (isset($_SESSION['protfolio_catagories_success'])) :
+                     if (isset($_SESSION['portfolio_categories_success'])) :
                      ?>
                         <div class="alert alert-success" role="alert">
-                           <?= $_SESSION['protfolio_catagories_success'] ?>
+                           <?= $_SESSION['portfolio_categories_success'] ?>
                         </div>
                      <?php
-                        unset($_SESSION['protfolio_catagories_success']);
+                        unset($_SESSION['portfolio_categories_success']);
                      endif;
                      ?>
-                     <form action="protfolio_catagory_code.php" method="post">
+                     <form action="portfolio_category_code.php" method="post">
                         <div class="form-group">
-                           <label>Protfolio Catagory</label>
-                           <input placeholder="Enter your auto write title" class="form-control <?= (isset($_SESSION['protfolio_catagory_requried'])) ? "is-invalid" : "" ?>" type=" text" name="protfolio_catagory" value="<?php
-                                                                                                                                                                                                                              if (isset($_SESSION['protfolio_catagory'])) {
-                                                                                                                                                                                                                                 echo $_SESSION['protfolio_catagory'];
-                                                                                                                                                                                                                                 unset($_SESSION['protfolio_catagory']);
+                           <label>portfolio category</label>
+                           <input placeholder="Enter your auto write title" class="form-control <?= (isset($_SESSION['portfolio_category_requried'])) ? "is-invalid" : "" ?>" type=" text" name="portfolio_category" value="<?php
+                                                                                                                                                                                                                              if (isset($_SESSION['portfolio_category'])) {
+                                                                                                                                                                                                                                 echo $_SESSION['portfolio_category'];
+                                                                                                                                                                                                                                 unset($_SESSION['portfolio_category']);
                                                                                                                                                                                                                               }
                                                                                                                                                                                                                               ?>">
                            <small class="text-danger">
                               <?php
-                              if (isset($_SESSION['protfolio_catagory_requried'])) {
-                                 echo $_SESSION['protfolio_catagory_requried'];
-                                 unset($_SESSION['protfolio_catagory_requried']);
+                              if (isset($_SESSION['portfolio_category_requried'])) {
+                                 echo $_SESSION['portfolio_category_requried'];
+                                 unset($_SESSION['portfolio_category_requried']);
                               }
 
                               ?>

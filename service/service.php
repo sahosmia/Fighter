@@ -17,7 +17,7 @@ $services = data_read("services", 0);  // 0 == all, 1 == hide_status, 2 == show_
 <div class="br-mainpanel">
    <div class="br-pageheader pd-y-15 pd-l-20">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
-         <a class="breadcrumb-item" href="../dasbord/dasbord.php">Bracket</a>
+         <a class="breadcrumb-item" href="../dashboard/dashboard.php">Bracket</a>
          <span class="breadcrumb-item active text-capitalize">service</span>
       </nav>
    </div>

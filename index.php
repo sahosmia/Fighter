@@ -6,7 +6,7 @@ include 'include/function.php';
 $skills = data_read("skills", 2);
 $services = data_read("services", 2);
 $auto_writes = data_read("auto_writes", 2);
-$protfolios = data_read("protfolios", 1);
+$portfolios = data_read("portfolios", 1);
 $count = 1;
 
 // test($col, $val);
@@ -296,12 +296,12 @@ $count = 1;
                 <div class="col-md-12">
                     <div class="portfolio_nav">
                         <ul class="filter-menu">
-                            <li class="current_menu_item" data-filter="*" data-toggle="tooltip" data-placement="top" title="<?= $protfolios->num_rows ?>">All</li>
+                            <li class="current_menu_item" data-filter="*" data-toggle="tooltip" data-placement="top" title="<?= $portfolios->num_rows ?>">All</li>
                             <?php
-                            foreach (data_read("protfolio_catagories", 1) as $data) :
+                            foreach (data_read("portfolio_categories", 1) as $data) :
                                 // $explod_name = explode(" ", $data['name']);
                                 $id = $data['id'];
-                                $count_query = "SELECT COUNT(*) AS count FROM protfolios WHERE catagory_id = $id";
+                                $count_query = "SELECT COUNT(*) AS count FROM portfolios WHERE category_id = $id";
                                 $result = mysqli_query(db(), $count_query);
                                 $result_assoc = mysqli_fetch_assoc($result);
 
@@ -318,14 +318,14 @@ $count = 1;
             <div class="row prot_image_load">
                 <div class="gallery_items">
                     <?php
-                    foreach (data_read("protfolios", 1) as $data) :
+                    foreach (data_read("portfolios", 1) as $data) :
                     ?>
                         <!-- START SINGLE PORTFOLIO  -->
-                        <div class="col-md-3 <?= $data['catagory_id'] ?>  col-sm-6 col-xs-12 grid-item">
+                        <div class="col-md-3 <?= $data['category_id'] ?>  col-sm-6 col-xs-12 grid-item">
                             <div class="single_portfolio">
                                 <div class="single_portfolio_thumb">
-                                    <a href="upload/protfolio/<?= $data['img'] ?>" class="venobox_custom" data-gall="myGallery">
-                                        <img src="upload/protfolio/<?= $data['img'] ?>" alt="" />
+                                    <a href="upload/portfolio/<?= $data['img'] ?>" class="venobox_custom" data-gall="myGallery">
+                                        <img src="upload/portfolio/<?= $data['img'] ?>" alt="" />
                                         <div class="port_icon">
                                             <span class="ti-plus"></span>
                                         </div>
