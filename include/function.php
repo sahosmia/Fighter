@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+   session_start();
+}
 date_default_timezone_set('Asia/Dhaka');
 $date = date('Y-m-d H:i:s');
 $auth = isset($_SESSION['auth']['id']);
@@ -101,3 +103,25 @@ function back()
 {
    header('location:' . $_SERVER['HTTP_REFERER']);
 }
+
+function redirect($path)
+{
+   header('location:' . $path);
+}
+function check_auth()
+{
+   if (!isset($_SESSION['auth']['id'])) {
+      $_SESSION['deny_error'] = "Please log in first!";
+      redirect("../authentication/login.php");
+      exit();  }
+}
+
+function check_guest()
+{
+   if (isset($_SESSION['auth']['id'])) {
+      $_SESSION['deny_error'] = "You are already logged in!";
+      redirect("../dasbord/dasbord.php");
+      exit();  }
+}
+
+

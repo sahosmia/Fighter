@@ -1,12 +1,12 @@
 <?php
 require_once '../include/function.php';
+check_auth();
 $skills = data_read("skills", 0);
 
 $count = 1;
 
 // include item 
 require_once '../include/header.php';
-require_once '../include/login_check.php';
 require_once '../include/nav.php';
 
 

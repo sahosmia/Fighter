@@ -1,11 +1,11 @@
 <?php
 require_once '../include/function.php';
+check_auth();
 
 $count = 1;
 
 // include item 
 require_once '../include/header.php';
-require_once '../include/login_check.php';
 require_once '../include/nav.php';
 
 

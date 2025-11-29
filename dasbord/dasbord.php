@@ -1,12 +1,12 @@
 <?php
 require_once '../include/function.php';
+check_auth();
 $users = data_read("users", 0);  // 0 == all, 1 == hide_status, 2 == show_status
 
 
 
 // include item 
 require_once '../include/header.php';
-require_once '../include/login_check.php';
 require_once '../include/nav.php';
 
 

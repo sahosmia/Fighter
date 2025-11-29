@@ -1,5 +1,6 @@
 <?php
 include '../include/db.php';
+include '../include/function.php';
 $id = $_SESSION['auth']['id'];
 $old_password_session = $_SESSION['auth']['password'];
 $error = false;
@@ -41,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       mysqli_query($db_connect, $update_query);
       $_SESSION['auth']['password'] = $md5_password;
       $_SESSION['password_update_success'] = "You are success to update your password";
-      header("location: edit.php");
+      redirect("edit.php");
    } else {
-      header("location: edit.php");
+redirect("edit.php");
    }
 }

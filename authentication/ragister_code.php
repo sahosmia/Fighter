@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 require_once '../include/function.php';
 
 // collect inputs
@@ -39,7 +41,7 @@ if (!$confirm_password) {
 // If error exists
 if (!empty($errors)) {
     $_SESSION['error'] = $errors;
-    header("Location: register.php");
+    redirect("register.php");
     exit();
 }
 
@@ -52,7 +54,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $_SESSION['error']['email'] = "This email already exists";
-    header("Location: register.php");
+    redirect("register.php");
     exit();
 }
 
@@ -68,5 +70,5 @@ $_SESSION['success'] = "Registration successful. Please login.";
 // Clear old inputs on success
 unset($_SESSION['old']);
 
-header("Location: login.php");
+redirect("login.php");
 exit();

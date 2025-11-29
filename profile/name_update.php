@@ -1,5 +1,6 @@
 <?php
 include '../include/db.php';
+include '../include/function.php';
 
 $name = $_POST['name'];
 $old_name = $_SESSION['auth']['name'];
@@ -22,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       mysqli_query($db_connect, $update_query);
       $_SESSION['auth']['name'] = $name;
       $_SESSION['name_update_success'] = "You are success to update your name form $old_name to $name";
-      header("location: edit.php");
+      redirect("edit.php");
    } else {
-      header("location: edit.php");
+      redirect('edit.php');
    }
 }

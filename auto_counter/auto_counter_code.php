@@ -47,12 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $insert_query =  "INSERT INTO auto_counters (title, value, logo, added_by, created_at) VALUES ('$auto_counter_title', '$auto_counter_value', '$auto_counter_logo', '$auth', '$date')";
          mysqli_query(db(), $insert_query);
          $_SESSION['auto_counter_success'] = "auto_counter Add successfull.";
-         header("location: auto_counter.php");
+
+         redirect("auto_counter.php");
       } else {             // auto_counter title exist
          $_SESSION['auto_counter_title_exist'] = "*This auto_counter title is alrady exist";
-         header("location: auto_counter.php");
+         redirect("auto_counter.php");
       }
    } else {            // error == true
-      header("location: auto_counter.php");
+      redirect("auto_counter.php");
    }
 }

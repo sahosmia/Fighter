@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 require_once '../include/function.php';
 
 $email = trim($_POST['email'] ?? '');
@@ -29,7 +31,7 @@ if (!$password) {
 --------------------------*/
 if (!empty($errors)) {
     $_SESSION['error'] = $errors;
-    header("Location: login.php");
+    redirect("login.php");
     exit();
 }
 
@@ -47,7 +49,7 @@ $result = $stmt->get_result();
 --------------------------*/
 if ($result->num_rows < 1) {
     $_SESSION['error']['email'] = "This email is not registered";
-    header("Location: login.php");
+    redirect("login.php");
     exit();
 }
 
@@ -58,7 +60,7 @@ $user = $result->fetch_assoc();
 --------------------------*/
 if (!password_verify($password, $user['password'])) {
     $_SESSION['error']['password'] = "Incorrect password";
-    header("Location: login.php");
+    redirect("login.php");
     exit();
 }
 
@@ -73,5 +75,5 @@ $_SESSION['auth'] = [
 
 unset($_SESSION['error'], $_SESSION['old']);
 
-header("Location: ../dasbord/dasbord.php");
+redirect("../dasbord/dasbord.php");
 exit();

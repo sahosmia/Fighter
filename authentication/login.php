@@ -1,6 +1,10 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../include/header.php';
+require_once '../include/function.php';
+check_guest();
 
 $old = $_SESSION['old'] ?? [];
 $errors = $_SESSION['error'] ?? [];

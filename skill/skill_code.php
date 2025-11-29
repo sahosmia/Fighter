@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $insert_query =  "INSERT INTO skills (skill_title, skill_value) VALUES ('$skill_title', '$skill_value')";
          mysqli_query(db(), $insert_query);
          $_SESSION['skill_success'] = "Skill Add successfull.";
-         header("location: skill.php");
+         redirect("skill.php");
       } else {             // skill title exist
          $_SESSION['skill_title_exist'] = "*This skill title is alrady exist";
          back();

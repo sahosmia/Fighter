@@ -1,9 +1,9 @@
 <?php
 
 include '../include/function.php';
-include '../include/login_check.php';
 include '../include/header.php';
 include '../include/nav.php';
+check_auth();
 $select_query =  "SELECT id, name, email FROM users";
 $db_mysqli_query = mysqli_query(db(), $select_query);
 ?>

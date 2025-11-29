@@ -1,5 +1,6 @@
 <?php
 include '../include/db.php';
+include '../include/function.php';
 
 $email = $_POST['email'];
 $old_email = $_SESSION['auth']['email'];
@@ -28,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          mysqli_query($db_connect, $update_query);
          $_SESSION['auth']['email'] = $email;
          $_SESSION['email_update_success'] = "You are success to update your email form $old_email to $email";
-         header("location: edit.php");
+         redirect('edit.php');
       } else {             // email exist
          $_SESSION['update_email_exist'] = "*This email is alrady exist";
-         header("location: edit.php");
+         redirect('edit.php');
       }
    } else {
-      header("location: edit.php");
+      redirect('edit.php');
    }
 }

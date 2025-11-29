@@ -1,8 +1,8 @@
 <?php
 require_once '../include/function.php';
 require_once '../include/header.php';
-require_once '../include/login_check.php';
 require_once '../include/nav.php';
+check_auth();
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="br-mainpanel">
