@@ -1,16 +1,10 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
+if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
-require_once '../include/header.php';
-require_once '../include/function.php';
-check_guest();
-
-$old = $_SESSION['old'] ?? [];
-$errors = $_SESSION['error'] ?? [];
+require_once 'partials/header.php';
+// require_once 'views/partials/nav.php';
 ?>
-
-
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
    <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
@@ -31,7 +25,7 @@ $errors = $_SESSION['error'] ?? [];
          <span class="tx-normal">[</span> bracket <span class="tx-normal">]</span>
       </div>
 
-      <form action="/login.php" method="post">
+      <form action="" method="post">
 
          <!-- Email -->
          <div class="form-group">
@@ -68,6 +62,6 @@ $errors = $_SESSION['error'] ?? [];
       </div>
    </div>
 </div>
-
-<?php unset($_SESSION['error'], $_SESSION['old']); ?>
-<?php require_once __DIR__ . '/../../include/footer.php'; ?>
+<?php
+require_once 'partials/footer.php';
+?>
